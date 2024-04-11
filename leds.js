@@ -12,6 +12,12 @@ function updateRGB(red, green, blue) {
     const greenLed = new Gpio(GREEN_PIN, {mode: Gpio.OUTPUT});
     const blueLed = new Gpio(BLUE_PIN, {mode: Gpio.OUTPUT});
 
+    const gamma = 3.5
+
+    red = 255 * ((red / 255) ** gamma)
+    green = 255 * ((green / 255) ** gamma)
+    blue = 255 * ((blue / 255) ** gamma)
+
     redLed.pwmWrite(red);
     greenLed.pwmWrite(green);
     blueLed.pwmWrite(blue);
