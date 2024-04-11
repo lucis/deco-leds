@@ -1,12 +1,12 @@
 const updateRGB = require("./leds");
 const axios = require('axios');
 
-const rgb = [0, 255, 0]
+let rgb = [0, 255, 0]
 
 // Function to fetch data from the URL
 async function fetchData() {
-    const response = await axios.get("https://deco-sites-page-builder.deno.dev/?asJson&onlyColors", {
-      timeout: 2000,
+    const response = await axios.get("https://deco-sites-page-builder.deno.dev/live/invoke/deco-sites/page-builder/loaders/standData.ts?onlyColors", {
+      timeout: 5000,
     })
         .catch((err) => { console.log(err); return({data:{
             props: {
@@ -19,7 +19,7 @@ async function fetchData() {
                 ]
             }
         }})});
-    rgb = response.data.props.sections[0].props.rgb;
+    rgb = response.data.rgb;
     updateRGB(...rgb);
 }
 
