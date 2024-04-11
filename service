@@ -1,0 +1,13 @@
+[Unit]
+Description=Node.js Project
+
+[Service]
+ExecStart=/usr/bin/node /home/deco/deco-leds/index.js
+Restart=on-failure
+User=root
+Group=root
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
